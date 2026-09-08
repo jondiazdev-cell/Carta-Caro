@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+<defs>
+ <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffb347"/><stop offset=".45" stop-color="#e85d04"/><stop offset="1" stop-color="#9d0208"/></linearGradient>
+ <filter id="blur"><feGaussianBlur stdDeviation="18"/></filter>
+</defs>
+<rect width="1600" height="900" fill="url(#g)"/>
+<g opacity=".25" filter="url(#blur)" fill="#fff">
+ <circle cx="250" cy="190" r="130"/><circle cx="1370" cy="180" r="180"/><circle cx="1160" cy="720" r="170"/><circle cx="380" cy="720" r="210"/>
+</g>
+<g fill="#fff" opacity=".16">
+ <path d="M80 760c150-190 260-210 410-40 90 100 180 100 270-30 100-145 220-145 350 10 120 145 230 145 410-30v230H80z"/>
+</g>
+<g fill="#111" opacity=".12">
+ <circle cx="800" cy="450" r="230"/><circle cx="800" cy="450" r="190"/>
+</g>
+<text x="800" y="475" text-anchor="middle" font-family="Arial Black,Arial" font-size="150" font-weight="900" fill="#fff" opacity=".12">🍗</text>
+</svg>

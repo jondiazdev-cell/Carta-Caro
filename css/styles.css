@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --red: #d71920;
+  --dark: #151515;
+  --cream: #fff8eb;
+  --gold: #ffbf3f;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--dark);
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+.menu-page { min-height: 100vh; }
+
+.hero {
+  min-height: 66vh;
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(25,25,25,.94), rgba(112,8,12,.72)),
+    url('../assets/pollos-king-bg.svg') center/cover no-repeat;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 45%, transparent 0 20%, rgba(0,0,0,.35) 75%);
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: white;
+  padding: 40px 20px;
+}
+.eyebrow {
+  display: inline-block;
+  background: var(--gold);
+  color: #171717;
+  font-weight: 800;
+  font-size: .82rem;
+  padding: 8px 14px;
+  border-radius: 999px;
+  margin-bottom: 18px;
+}
+.hero h1 {
+  font-family: 'Anton', Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: clamp(4rem, 12vw, 9rem);
+  line-height: .9;
+  margin: 0;
+  text-shadow: 5px 5px 0 rgba(0,0,0,.3);
+}
+.hero p {
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  font-weight: 600;
+  margin: 20px 0 28px;
+}
+.hero-button {
+  display: inline-block;
+  background: var(--red);
+  color: white;
+  text-decoration: none;
+  padding: 13px 26px;
+  border-radius: 999px;
+  font-weight: 800;
+  box-shadow: 0 8px 25px rgba(215,25,32,.35);
+  transition: transform .2s, background .2s;
+}
+.hero-button:hover { transform: translateY(-2px); background: #b91218; }
+
+.menu-section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 55px 20px 70px;
+}
+.section-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.section-heading span { font-size: 1.8rem; }
+.section-heading h2 {
+  margin: 0;
+  font-family: 'Anton', Impact, sans-serif;
+  text-transform: uppercase;
+  font-size: clamp(2.2rem, 6vw, 3.7rem);
+  letter-spacing: 1px;
+}
+.section-subtitle {
+  text-align: center;
+  color: #777;
+  margin: 8px 0 35px;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 22px;
+}
+.product-card {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 16px;
+  background: white;
+  border: 1px solid #eadfce;
+  border-radius: 13px;
+  box-shadow: 0 3px 13px rgba(0,0,0,.05);
+  transition: transform .18s, box-shadow .18s;
+}
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.09);
+}
+.product-image {
+  width: 54px;
+  height: 54px;
+  flex: 0 0 54px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.product-placeholder {
+  width: 54px;
+  height: 54px;
+  flex: 0 0 54px;
+  display: grid;
+  place-items: center;
+  background: #f8e8d4;
+  border-radius: 10px;
+  font-size: 1.45rem;
+}
+.product-name {
+  flex: 1;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.product-price {
+  white-space: nowrap;
+  color: var(--red);
+  font-weight: 800;
+}
+footer {
+  background: var(--dark);
+  color: #ddd;
+  padding: 28px 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+footer strong { color: white; }
+
+@media (max-width: 680px) {
+  .hero { min-height: 58vh; }
+  .product-grid { grid-template-columns: 1fr; }
+  .product-card { min-height: 70px; }
+  .menu-section { padding-top: 42px; }
+}
