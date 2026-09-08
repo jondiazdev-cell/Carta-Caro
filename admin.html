@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Administrador - POLLOS KING</title>
+        <style>
+            body {
+                  font-family: Arial, sans-serif;
+                        background: #222;
+                              color: #fff;
+                                    margin: 0;
+                                          padding: 20px;
+                                              }
+                                                  h1 {
+                                                        text-align: center;
+                                                              color: gold;
+                                                                  }
+                                                                      form {
+                                                                            display: flex;
+                                                                                  flex-direction: column;
+                                                                                        gap: 10px;
+                                                                                              max-width: 400px;
+                                                                                                    margin: 20px auto;
+                                                                                                        }
+                                                                                                            input, button {
+                                                                                                                  padding: 10px;
+                                                                                                                        border: none;
+                                                                                                                              border-radius: 5px;
+                                                                                                                                  }
+                                                                                                                                      input {
+                                                                                                                                            background: #fff;
+                                                                                                                                                  color: #333;
+                                                                                                                                                      }
+                                                                                                                                                          button {
+                                                                                                                                                                background: #d62828;
+                                                                                                                                                                      color: #fff;
+                                                                                                                                                                            cursor: pointer;
+                                                                                                                                                                                }
+                                                                                                                                                                                    button:hover {
+                                                                                                                                                                                          background: #b71c1c;
+                                                                                                                                                                                              }
+                                                                                                                                                                                                </style>
+                                                                                                                                                                                                </head>
+                                                                                                                                                                                                <body>
+                                                                                                                                                                                                  <h1>Panel Administrador</h1>
+
+                                                                                                                                                                                                    <form id="formConfig">
+                                                                                                                                                                                                        <input type="text" id="titulo" placeholder="Título del negocio">
+                                                                                                                                                                                                            <input type="text" id="direccion" placeholder="Dirección">
+                                                                                                                                                                                                                <input type="url" id="fondo" placeholder="URL de imagen de fondo">
+                                                                                                                                                                                                                    <button type="submit">Guardar Configuración</button>
+                                                                                                                                                                                                                      </form>
+
+                                                                                                                                                                                                                        <form id="formProducto">
+                                                                                                                                                                                                                            <input type="text" id="nombre" placeholder="Nombre del producto" required>
+                                                                                                                                                                                                                                <input type="number" id="precio" placeholder="Precio" required>
+                                                                                                                                                                                                                                    <button type="submit">Añadir producto</button>
+                                                                                                                                                                                                                                      </form>
+
+                                                                                                                                                                                                                                        <script>
+                                                                                                                                                                                                                                            // Guardar configuración
+                                                                                                                                                                                                                                                document.getElementById("formConfig").addEventListener("submit", function(e){
+                                                                                                                                                                                                                                                      e.preventDefault();
+                                                                                                                                                                                                                                                            localStorage.setItem("titulo", document.getElementById("titulo").value);
+                                                                                                                                                                                                                                                                  localStorage.setItem("direccion", document.getElementById("direccion").value);
+                                                                                                                                                                                                                                                                        localStorage.setItem("fondo", document.getElementById("fondo").value);
+                                                                                                                                                                                                                                                                              alert("Configuración guardada");
+                                                                                                                                                                                                                                                                                  });
+
+                                                                                                                                                                                                                                                                                      // Añadir producto
+                                                                                                                                                                                                                                                                                          document.getElementById("formProducto").addEventListener("submit", function(e){
+                                                                                                                                                                                                                                                                                                e.preventDefault();
+                                                                                                                                                                                                                                                                                                      const nombre = document.getElementById("nombre").value;
+                                                                                                                                                                                                                                                                                                            const precio = document.getElementById("precio").value;
+
+                                                                                                                                                                                                                                                                                                                  let productos = JSON.parse(localStorage.getItem("productos")) || [];
+                                                                                                                                                                                                                                                                                                                        productos.push({nombre, precio});
+                                                                                                                                                                                                                                                                                                                              localStorage.setItem("productos", JSON.stringify(productos));
+
+                                                                                                                                                                                                                                                                                                                                    alert("Producto añadido correctamente");
+                                                                                                                                                                                                                                                                                                                                          this.reset();
+                                                                                                                                                                                                                                                                                                                                              });
+                                                                                                                                                                                                                                                                                                                                                </script>
+                                                                                                                                                                                                                                                                                                                                                </body>
+                                                                                                                                                                                                                                                                                                                                                </html>
+                                                                                                                                                                                                                                                                                                                                                
