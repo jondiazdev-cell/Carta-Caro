@@ -2,86 +2,111 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Administrador - POLLOS KING</title>
-        <style>
-            body {
-                  font-family: Arial, sans-serif;
-                        background: #222;
-                              color: #fff;
-                                    margin: 0;
-                                          padding: 20px;
-                                              }
-                                                  h1 {
-                                                        text-align: center;
-                                                              color: gold;
-                                                                  }
-                                                                      form {
-                                                                            display: flex;
-                                                                                  flex-direction: column;
-                                                                                        gap: 10px;
-                                                                                              max-width: 400px;
-                                                                                                    margin: 20px auto;
-                                                                                                        }
-                                                                                                            input, button {
-                                                                                                                  padding: 10px;
-                                                                                                                        border: none;
-                                                                                                                              border-radius: 5px;
-                                                                                                                                  }
-                                                                                                                                      input {
-                                                                                                                                            background: #fff;
-                                                                                                                                                  color: #333;
-                                                                                                                                                      }
-                                                                                                                                                          button {
-                                                                                                                                                                background: #d62828;
-                                                                                                                                                                      color: #fff;
-                                                                                                                                                                            cursor: pointer;
-                                                                                                                                                                                }
-                                                                                                                                                                                    button:hover {
-                                                                                                                                                                                          background: #b71c1c;
-                                                                                                                                                                                              }
-                                                                                                                                                                                                </style>
-                                                                                                                                                                                                </head>
-                                                                                                                                                                                                <body>
-                                                                                                                                                                                                  <h1>Panel Administrador</h1>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrador · Pollos King</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">🍗 Pollos King</a>
+      <a class="btn btn-outline-light btn-sm" href="index.html">Ver menú</a>
+    </div>
+  </nav>
 
-                                                                                                                                                                                                    <form id="formConfig">
-                                                                                                                                                                                                        <input type="text" id="titulo" placeholder="Título del negocio">
-                                                                                                                                                                                                            <input type="text" id="direccion" placeholder="Dirección">
-                                                                                                                                                                                                                <input type="url" id="fondo" placeholder="URL de imagen de fondo">
-                                                                                                                                                                                                                    <button type="submit">Guardar Configuración</button>
-                                                                                                                                                                                                                      </form>
+  <div class="container py-4 py-lg-5">
+    <div class="mb-4">
+      <h1 class="fw-bold mb-1">Administrador</h1>
+      <p class="text-secondary mb-0">Gestiona productos, título y fondo del menú.</p>
+    </div>
 
-                                                                                                                                                                                                                        <form id="formProducto">
-                                                                                                                                                                                                                            <input type="text" id="nombre" placeholder="Nombre del producto" required>
-                                                                                                                                                                                                                                <input type="number" id="precio" placeholder="Precio" required>
-                                                                                                                                                                                                                                    <button type="submit">Añadir producto</button>
-                                                                                                                                                                                                                                      </form>
+    <div id="alertBox"></div>
 
-                                                                                                                                                                                                                                        <script>
-                                                                                                                                                                                                                                            // Guardar configuración
-                                                                                                                                                                                                                                                document.getElementById("formConfig").addEventListener("submit", function(e){
-                                                                                                                                                                                                                                                      e.preventDefault();
-                                                                                                                                                                                                                                                            localStorage.setItem("titulo", document.getElementById("titulo").value);
-                                                                                                                                                                                                                                                                  localStorage.setItem("direccion", document.getElementById("direccion").value);
-                                                                                                                                                                                                                                                                        localStorage.setItem("fondo", document.getElementById("fondo").value);
-                                                                                                                                                                                                                                                                              alert("Configuración guardada");
-                                                                                                                                                                                                                                                                                  });
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <div class="card shadow-sm border-0 mb-4">
+          <div class="card-body p-4">
+            <h4 class="card-title fw-bold mb-3" id="formHeading">Añadir producto</h4>
+            <form id="productForm">
+              <input type="hidden" id="productId">
+              <div class="mb-3">
+                <label class="form-label fw-semibold" for="productName">Nombre</label>
+                <input class="form-control" id="productName" required maxlength="80" placeholder="Ej: Completo italiano">
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-semibold" for="productPrice">Precio</label>
+                <input class="form-control" id="productPrice" type="number" min="0" step="1" required placeholder="2000">
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-semibold" for="productImage">Imagen opcional</label>
+                <input class="form-control" id="productImage" type="file" accept="image/*">
+                <div class="form-text">La imagen se guarda en este navegador.</div>
+              </div>
+              <div id="currentImageWrap" class="mb-3 d-none">
+                <img id="currentImage" class="current-image" alt="Imagen actual">
+                <button type="button" class="btn btn-sm btn-outline-danger mt-2" id="removeImageBtn">Quitar imagen</button>
+              </div>
+              <div class="d-flex gap-2">
+                <button class="btn btn-danger" type="submit" id="saveProductBtn">Añadir producto</button>
+                <button class="btn btn-outline-secondary d-none" type="button" id="cancelEditBtn">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
 
-                                                                                                                                                                                                                                                                                      // Añadir producto
-                                                                                                                                                                                                                                                                                          document.getElementById("formProducto").addEventListener("submit", function(e){
-                                                                                                                                                                                                                                                                                                e.preventDefault();
-                                                                                                                                                                                                                                                                                                      const nombre = document.getElementById("nombre").value;
-                                                                                                                                                                                                                                                                                                            const precio = document.getElementById("precio").value;
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4">
+            <h4 class="card-title fw-bold mb-3">Configuración del menú</h4>
+            <form id="settingsForm">
+              <div class="mb-3">
+                <label class="form-label fw-semibold" for="menuTitleInput">Título</label>
+                <input class="form-control" id="menuTitleInput" maxlength="60" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-semibold" for="backgroundInput">Imagen de fondo</label>
+                <input class="form-control" id="backgroundInput" type="file" accept="image/*">
+                <div class="form-text">Se almacenará localmente en el navegador.</div>
+              </div>
+              <div id="backgroundPreviewWrap" class="mb-3 d-none">
+                <img id="backgroundPreview" class="background-preview" alt="Fondo actual">
+              </div>
+              <button class="btn btn-dark" type="submit">Guardar configuración</button>
+              <button class="btn btn-outline-danger ms-2" type="button" id="resetSettingsBtn">Restablecer fondo</button>
+            </form>
+          </div>
+        </div>
+      </div>
 
-                                                                                                                                                                                                                                                                                                                  let productos = JSON.parse(localStorage.getItem("productos")) || [];
-                                                                                                                                                                                                                                                                                                                        productos.push({nombre, precio});
-                                                                                                                                                                                                                                                                                                                              localStorage.setItem("productos", JSON.stringify(productos));
+      <div class="col-lg-7">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-0">
+            <div class="p-4 border-bottom d-flex justify-content-between align-items-center">
+              <div>
+                <h4 class="fw-bold mb-1">Productos</h4>
+                <small class="text-secondary" id="productCount"></small>
+              </div>
+              <button class="btn btn-outline-danger btn-sm" id="resetProductsBtn">Restaurar menú original</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Imagen</th>
+                    <th class="text-end">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="productTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-                                                                                                                                                                                                                                                                                                                                    alert("Producto añadido correctamente");
-                                                                                                                                                                                                                                                                                                                                          this.reset();
-                                                                                                                                                                                                                                                                                                                                              });
-                                                                                                                                                                                                                                                                                                                                                </script>
-                                                                                                                                                                                                                                                                                                                                                </body>
-                                                                                                                                                                                                                                                                                                                                                </html>
-                                                                                                                                                                                                                                                                                                                                                
+  <script src="js/admin.js"></script>
+</body>
+</html>

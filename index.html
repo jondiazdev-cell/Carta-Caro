@@ -2,103 +2,37 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>POLLOS KING - Menú</title>
-        <style>
-            body {
-                  margin: 0;
-                        font-family: Arial, sans-serif;
-                              background: url('fondo.jpg') no-repeat center center fixed;
-                                    background-size: cover;
-                                          color: #fff;
-                                              }
-                                                  header {
-                                                        text-align: center;
-                                                              background: rgba(0,0,0,0.6);
-                                                                    padding: 20px;
-                                                                        }
-                                                                            header h1 {
-                                                                                  font-size: 3em;
-                                                                                        display: flex;
-                                                                                              align-items: center;
-                                                                                                    justify-content: center;
-                                                                                                          gap: 15px;
-                                                                                                              }
-                                                                                                                  header img {
-                                                                                                                        width: 60px;
-                                                                                                                            }
-                                                                                                                                .menu {
-                                                                                                                                      max-width: 800px;
-                                                                                                                                            margin: 30px auto;
-                                                                                                                                                  background: rgba(0,0,0,0.6);
-                                                                                                                                                        padding: 20px;
-                                                                                                                                                              border-radius: 10px;
-                                                                                                                                                                    animation: fadeIn 1.5s ease;
-                                                                                                                                                                        }
-                                                                                                                                                                            .menu h2 {
-                                                                                                                                                                                  text-align: center;
-                                                                                                                                                                                        color: gold;
-                                                                                                                                                                                              margin-bottom: 20px;
-                                                                                                                                                                                                  }
-                                                                                                                                                                                                      ul {
-                                                                                                                                                                                                            list-style: none;
-                                                                                                                                                                                                                  padding: 0;
-                                                                                                                                                                                                                      }
-                                                                                                                                                                                                                          li {
-                                                                                                                                                                                                                                display: flex;
-                                                                                                                                                                                                                                      justify-content: space-between;
-                                                                                                                                                                                                                                            padding: 10px;
-                                                                                                                                                                                                                                                  border-bottom: 1px solid rgba(255,255,255,0.2);
-                                                                                                                                                                                                                                                        transition: background 0.3s;
-                                                                                                                                                                                                                                                            }
-                                                                                                                                                                                                                                                                li:hover {
-                                                                                                                                                                                                                                                                      background: rgba(255,255,255,0.1);
-                                                                                                                                                                                                                                                                          }
-                                                                                                                                                                                                                                                                              @keyframes fadeIn {
-                                                                                                                                                                                                                                                                                    from {opacity: 0; transform: translateY(20px);}
-                                                                                                                                                                                                                                                                                          to {opacity: 1; transform: translateY(0);}
-                                                                                                                                                                                                                                                                                              }
-                                                                                                                                                                                                                                                                                                </style>
-                                                                                                                                                                                                                                                                                                </head>
-                                                                                                                                                                                                                                                                                                <body>
-                                                                                                                                                                                                                                                                                                  <header>
-                                                                                                                                                                                                                                                                                                      <h1>
-                                                                                                                                                                                                                                                                                                            <img src="corona.png" alt="Corona">
-                                                                                                                                                                                                                                                                                                                  POLLOS KING
-                                                                                                                                                                                                                                                                                                                      </h1>
-                                                                                                                                                                                                                                                                                                                          <p>Av. Estación, Santa Fe</p>
-                                                                                                                                                                                                                                                                                                                            </header>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pollos King</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main class="menu-page">
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="eyebrow">Av. Estación Santa Fe</span>
+        <h1 id="menuTitle">Pollos King</h1>
+        <p>Menú · Sabor que manda</p>
+        <a href="#menu" class="hero-button">Ver menú</a>
+      </div>
+    </section>
 
-                                                                                                                                                                                                                                                                                                                              <div class="menu">
-                                                                                                                                                                                                                                                                                                                                  <h2>Carta</h2>
-                                                                                                                                                                                                                                                                                                                                      <ul id="carta">
-                                                                                                                                                                                                                                                                                                                                            <!-- Productos se cargan dinámicamente -->
-                                                                                                                                                                                                                                                                                                                                                </ul>
-                                                                                                                                                                                                                                                                                                                                                  </div>
+    <section id="menu" class="menu-section">
+      <div class="section-heading">
+        <span>🍗</span>
+        <h2>Nuestro menú</h2>
+        <span>🍟</span>
+      </div>
+      <p class="section-subtitle">Todos nuestros precios en pesos chilenos</p>
+      <div id="productGrid" class="product-grid"></div>
+    </section>
 
-                                                                                                                                                                                                                                                                                                                                                    <script>
-                                                                                                                                                                                                                                                                                                                                                        // Productos iniciales
-                                                                                                                                                                                                                                                                                                                                                            const productos = [
-                                                                                                                                                                                                                                                                                                                                                                  {nombre: "Sopaipillas", precio: 500},
-                                                                                                                                                                                                                                                                                                                                                                        {nombre: "Calzones rotos", precio: 1000},
-                                                                                                                                                                                                                                                                                                                                                                              {nombre: "Café", precio: 500},
-                                                                                                                                                                                                                                                                                                                                                                                    {nombre: "Milo", precio: 1000},
-                                                                                                                                                                                                                                                                                                                                                                                          {nombre: "Capuchino", precio: 1000},
-                                                                                                                                                                                                                                                                                                                                                                                                {nombre: "Pizza familiar (3 ingredientes)", precio: 10000}
-                                                                                                                                                                                                                                                                                                                                                                                                    ];
-
-                                                                                                                                                                                                                                                                                                                                                                                                        function mostrarCarta() {
-                                                                                                                                                                                                                                                                                                                                                                                                              const carta = document.getElementById("carta");
-                                                                                                                                                                                                                                                                                                                                                                                                                    carta.innerHTML = "";
-                                                                                                                                                                                                                                                                                                                                                                                                                          productos.forEach(p => {
-                                                                                                                                                                                                                                                                                                                                                                                                                                  const li = document.createElement("li");
-                                                                                                                                                                                                                                                                                                                                                                                                                                          li.innerHTML = `<span>${p.nombre}</span> $${p.precio}`;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                  carta.appendChild(li);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        });
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                mostrarCarta();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </script>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </body>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+    <footer>
+      <strong id="footerTitle">Pollos King</strong>
+      <span>Av. Estación Santa Fe</span>
+    </footer>
+  </main>
+  <script src="js/menu.js"></script>
+</body>
+</html>
